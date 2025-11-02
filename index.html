@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Print Estimator</title>
+</head>
+<body>
+  <h1>3D Print Estimate</h1>
+  <form id="upload-form">
+    <input type="file" id="stlFile" accept=".stl" />
+    <button type="button" onclick="estimate()">Estimate</button>
+  </form>
+  <div id="result"></div>
+  <script>
+    async function estimate() {
+      const response = await fetch('/api/estimate');
+      const data = await response.json();
+      document.getElementById('result').textContent = JSON.stringify(data);
+    }
+  </script>
+</body>
+</html>
